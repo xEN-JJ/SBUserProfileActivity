@@ -26,39 +26,39 @@ public class StudentConfig {
         return args -> {
             try {
                 // Load images as byte arrays
-                Path jjImagePath = Paths.get("src/main/resources/static/images/JJ.jpg");
-                byte[] jjImageBytes = Files.readAllBytes(jjImagePath);
-                SerialBlob jjImageBlob = new SerialBlob(jjImageBytes);
+                Path fireWriter = Paths.get("src/main/resources/static/images/FireWriting.jpg");
+                byte[] fireWriterBytes = Files.readAllBytes(fireWriter);
+                SerialBlob fireWriterImageBlob = new SerialBlob(fireWriterBytes);
 
-                Path giuseppeImagePath = Paths.get("src/main/resources/static/images/Giuseppe.jpg");
-                byte[] giuseppeImageBytes = Files.readAllBytes(giuseppeImagePath);
-                SerialBlob giuseppeImageBlob = new SerialBlob(giuseppeImageBytes);
+                Path eggHeadPath = Paths.get("src/main/resources/static/images/egghead.jpg");
+                byte[] eggheadBytes = Files.readAllBytes(eggHeadPath);
+                SerialBlob eggHeadImageBlob = new SerialBlob(eggheadBytes);
 
                 // Create student objects with image blobs
-                Student JJ = new Student(
-                        "John Joseph",
-                        "Asoro",
-                        "johnjosephasoro215@gmail.com",
-                        "PogiSiJJ",
+                Student fireWriten = new Student(
+                        "John Writer",
+                        "Publisher",
+                        "johnwriterpublisher@gmail.com",
+                        "SHEESH",
                         "Male",
-                        "San Antonio, Bombon, Camarines Sur",
+                        "San Jose, Pili, Camarines Sur",
                         LocalDate.of(2003, Month.DECEMBER, 1),
-                        jjImageBlob
+                        fireWriterImageBlob
                 );
 
-                Student Giuseppe = new Student(
-                        "Giuseppe Marie",
-                        "Archivido",
-                        "giuseppearchivido12@gmail.com",
-                        "PoginiSeppe",
+                Student eggHead = new Student(
+                        "Egg Head",
+                        "Hero",
+                        "eggheadhero@gmail.com",
+                        "EGG",
                         "Male",
-                        "San Felipe, Camaligan, Camarines Sur",
+                        "San Felipe, Legazpi, Camarines Sur",
                         LocalDate.of(2004, Month.SEPTEMBER, 12),
-                        giuseppeImageBlob
+                        eggHeadImageBlob
                 );
 
                 // Save students to repository
-                repository.saveAll(List.of(JJ, Giuseppe));
+                repository.saveAll(List.of(fireWriten, eggHead));
                 LOGGER.info("Students initialized successfully with profile images.");
             } catch (Exception e) {
                 LOGGER.log(Level.SEVERE, "Error initializing students with profile images", e);
