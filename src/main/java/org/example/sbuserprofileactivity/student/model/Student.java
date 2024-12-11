@@ -1,11 +1,12 @@
-package org.example.sbuserprofileactivity.student;
+package org.example.sbuserprofileactivity.student.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
+import java.time.Period;
+import java.sql.Blob;
 
 @Entity
-@Table
+@Table(name = "student")
 public class Student {
     @Id
     @SequenceGenerator(
@@ -24,40 +25,46 @@ public class Student {
     private String email;
     private String password;
     private String gender;
+    @Transient
     private Integer age;
     private String address;
     private LocalDate birthdate;
-    private String profileImageUrl;
+
+    @Lob
+    @Column(name = "profile_image")
+    private Blob profileImage;
+    @Transient
+    private String profileImageBase64;
 
     public Student() {
     }
 
-    public Student(Long id, String name, String firstName, String lastName, String email, String password, String gender, Integer age, String address, LocalDate birthdate, String profileImageUrl) {
+    public Student(Long id, String firstName, String lastName, String email, String password, String gender, String address, LocalDate birthdate, Blob profileImage) {
         this.id = id;
-        this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.name = firstName + " " + lastName; // Concatenate firstName and lastName
         this.email = email;
         this.password = password;
         this.gender = gender;
-        this.age = age;
         this.address = address;
         this.birthdate = birthdate;
-        this.profileImageUrl = profileImageUrl;
+        this.profileImage = profileImage;
     }
 
-    public Student(String name, String firstName, String lastName, String email, String password, String gender, Integer age, String address, LocalDate birthdate, String profileImageUrl) {
-        this.name = name;
+    public Student(String firstName, String lastName, String email, String password, String gender, String address, LocalDate birthdate, Blob profileImage) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.name = firstName + " " + lastName; // Concatenate firstName and lastName
         this.email = email;
         this.password = password;
         this.gender = gender;
-        this.age = age;
         this.address = address;
         this.birthdate = birthdate;
-        this.profileImageUrl = profileImageUrl;
+        this.profileImage = profileImage;
     }
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -81,6 +88,7 @@ public class Student {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+        this.setName(this.firstName + " " + this.lastName); // Update name
     }
 
     public String getLastName() {
@@ -89,6 +97,7 @@ public class Student {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+        this.setName(this.firstName + " " + this.lastName); // Update name
     }
 
     public String getEmail() {
@@ -116,7 +125,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.birthdate, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
@@ -139,17 +148,25 @@ public class Student {
         this.birthdate = birthdate;
     }
 
-    public String getProfileImageUrl() {
-        return profileImageUrl;
+    public Blob getProfileImage() {
+        return profileImage;
     }
 
-    public void setProfileImageUrl(String profileImageUrl) {
-        this.profileImageUrl = profileImageUrl;
+    public void setProfileImage(Blob profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    public String getProfileImageBase64() {
+        return profileImageBase64;
+    }
+
+    public void setProfileImageBase64(String profileImageBase64) {
+        this.profileImageBase64 = profileImageBase64;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", firstName='" + firstName + '\'' +
@@ -160,7 +177,7 @@ public class Student {
                 ", age=" + age +
                 ", address='" + address + '\'' +
                 ", birthdate=" + birthdate +
-                ", profileImageUrl='" + profileImageUrl + '\'' +
+                ", profileImage='" + profileImage + '\'' +
                 '}';
     }
 }

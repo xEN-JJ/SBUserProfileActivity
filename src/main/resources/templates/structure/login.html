@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Login to access your profile.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/CSS/login.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <script src="/js/auth.js"></script>
+    <title>Login</title>
+</head>
+<body>
+<!--Main Container-->
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <!--    Login Container-->
+    <div class="row border rounded-5 p-3 bg-white shadow box-area">
+        <!--        Left Box-->
+        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center pb-2 flex-column left-box">
+            <div class="featured-image p-2">
+                <img src="/images/PapuntaKiLord.jpg" class="img-fluid rounded-3">
+            </div>
+            <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600">
+                Welcome!</p>
+            <small class="text-white text-wrap text-center"
+                   style="width: 17rem; font-family: 'Courier New', Courier, monospace;">Let's go to the
+                paradise.</small>
+        </div>
+        <!--        Right Box-->
+        <div class="col-md-6 align-items-center right-box">
+            <div class="row p-3 d-flex justify-content-bottom align-items-bottom">
+                <div class="header-text d-flex justify-content-center mb-4">
+                    <h2 class="login-label" style="font-family: 'Poppins', sans-serif">Login</h2>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-light">
+                        <i class="bi bi-envelope"></i>
+                    </span>
+                    <input type="email" id="email" name="email" class="form-control form-control-lg bg-light fs-6"
+                           placeholder="Enter your email" required>
+                </div>
+
+                <div class="input-group mb-1">
+                    <span class="input-group-text bg-light">
+                        <i class="bi bi-eye" id="togglePassword" style="cursor: pointer;"></i>
+                    </span>
+                    <input type="password" id="password" name="password"
+                           class="form-control form-control-lg bg-light fs-6"
+                           placeholder="Enter your password" required>
+                </div>
+
+                <div class="input-group mb-5 d-flex justify-content-between pt-1">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="formCheck">
+                        <label for="formCheck" class="form-check-label text-secondary"><small class="validation">Remember
+                            me?</small></label>
+                    </div>
+                    <div class="forgotPass">
+                        <small class="FG"><a href="#">Forgot Password?</a></small>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" onclick="handleLogin()">Login
+                    </button>
+                </div>
+                <div class="registerAcc mb-3 text-align-center">
+                    <p class="new-acc fs-6">Don't have an account? <a href="#" class="register">REGISTER</a></p>
+                </div>
+            </div>
+        </div>
+</body>
+
+<script>
+    document.getElementById('togglePassword').addEventListener('click', function () {
+        const passwordInput = document.getElementById('password');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.classList.toggle('bi-eye');
+        this.classList.toggle('bi-eye-slash');
+    });
+</script>
+</html>

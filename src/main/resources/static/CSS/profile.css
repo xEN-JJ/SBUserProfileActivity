@@ -1,0 +1,46 @@
+/* General card styling */
+.profile-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Hover effect for cards */
+.profile-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Card image styling */
+.profile-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Card body styling */
+.profile-card .card-body {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+}
+
+/* Add this CSS to your profile.css file */
+.add-button {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-button .bi {
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
